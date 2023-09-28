@@ -10,7 +10,7 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 5001
+EXPOSE 5000
 
 FROM node:alpine as production
 
@@ -27,4 +27,4 @@ COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
 
-CMD ["node", "dist/apps/reservations/main"]
+CMD ["node", "dist/apps/auth/main"]
