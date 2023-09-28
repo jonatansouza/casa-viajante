@@ -11,9 +11,11 @@ services:
       target: development
     command: npm run start:dev auth
     ports:
-      - '5000:3000'
+      - '3000:3000'
     volumes:
       - .:/usr/src/app
+    env_file:
+      - './apps/auth/.env'
     depends_on:
       - mongo
 
@@ -24,8 +26,10 @@ services:
       target: development
     command: npm run start:dev reservations
     ports:
-      - '5001:3000'
+      - '3001:3001'
     volumes:
       - .:/usr/src/app
+    env_file:
+      - './apps/reservations/.env'
     depends_on:
       - mongo

@@ -10,8 +10,6 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 5001
-
 FROM node:alpine as production
 
 ARG NODE_ENV=production
