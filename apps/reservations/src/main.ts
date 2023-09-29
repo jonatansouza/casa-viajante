@@ -6,7 +6,6 @@ import { ReservationsModule } from './reservations.module';
 async function bootstrap() {
   const app = await NestFactory.create(ReservationsModule);
   configureServices(app);
-  const port = app.get(ConfigService).get('PORT') || 3000;
-  await app.listen(port);
+  await app.listen(app.get(ConfigService).get('PORT'));
 }
 bootstrap();

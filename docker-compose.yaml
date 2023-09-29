@@ -33,3 +33,4 @@ services:
       - './apps/reservations/.env'
     depends_on:
       - mongo
+      - auth
