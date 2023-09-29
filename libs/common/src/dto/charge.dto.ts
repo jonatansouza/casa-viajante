@@ -1,13 +1,8 @@
-import { CardDto } from "@app/common/dto/card.dto";
-import { Type } from "class-transformer";
-import { IsDefined, IsNotEmptyObject, IsNumber, ValidateNested } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class ChargeDto {
-  @IsDefined()
-  @IsNotEmptyObject()
-  @ValidateNested()
-  @Type(() => CardDto)
-  card: CardDto;
+  @IsString()
+  card: string;
 
   @IsNumber()
   amount: number;

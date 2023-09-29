@@ -18,9 +18,6 @@ export class ReservationDocument extends BaseDocument{
   userId: string;
   
   @Prop()
-  placeId: string;
-  
-  @Prop()
   invoiceId: string;
 }
 
