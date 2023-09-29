@@ -1,4 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { PAYMENT_SERVICE } from '@app/common/constants/services';
+import { Inject, Injectable } from '@nestjs/common';
+import { ClientProxy } from '@nestjs/microservices';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
 import { ReservationsRepository } from './reservations.repository';
@@ -8,7 +10,10 @@ export class ReservationsService {
   /**
    *
    */
-  constructor(private readonly reservationsRepository: ReservationsRepository) {
+  constructor(
+    private readonly reservationsRepository: ReservationsRepository,
+    @Inject(PAYMENT_SERVICE) paymentClient: ClientProxy
+    ) {
   }
 
   async create(createReservationDto: CreateReservationDto, userId: string) {

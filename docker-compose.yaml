@@ -34,3 +34,18 @@ services:
     depends_on:
       - mongo
       - auth
+
+  payments:
+    build:
+      context: .
+      dockerfile: ./apps/payments/deploy/Dockerfile
+      target: development
+    command: npm run start:dev payments
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/usr/src/app
+    env_file:
+      - './apps/payments/.env'
+    depends_on:
+      - mongo

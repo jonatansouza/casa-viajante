@@ -1,5 +1,5 @@
 import { DatabaseModule, LoggerModule } from '@app/common';
-import { AUTH_SERVICE } from '@app/common/constants/services';
+import { AUTH_SERVICE, PAYMENT_SERVICE } from '@app/common/constants/services';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ClientsModule, Transport } from '@nestjs/microservices';
@@ -20,6 +20,8 @@ import { ReservationsService } from './reservations.service';
         PORT: Joi.number().required(),
         AUTH_HOST: Joi.string().required(),
         AUTH_PORT: Joi.number().required(),
+        PAYMENT_HOST: Joi.string().required(),
+        PAYMENT_PORT: Joi.number().required(),
       })
     }),
     DatabaseModule.forFeature(
@@ -38,6 +40,17 @@ import { ReservationsService } from './reservations.service';
           options: {
             host: config.get('AUTH_HOST'),
             port: config.get('AUTH_PORT')
+          }
+        }),
+        inject: [ConfigService]
+      },
+      {
+        name: PAYMENT_SERVICE,
+        useFactory: (config: ConfigService) => ({
+          transport: Transport.TCP,
+          options: {
+            host: config.get('PAYMENT_HOST'),
+            port: config.get('PAYMENT_PORT')
           }
         }),
         inject: [ConfigService]
