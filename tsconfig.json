@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "skipDefaultLibCheck": true,
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,
@@ -25,8 +26,5 @@
         "libs/common/src/*"
       ]
     }
-  },
-  "watchOptions": {
-    "watchFile": "fixedPollingInterval"
   }
 }
